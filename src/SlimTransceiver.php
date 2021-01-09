@@ -1,7 +1,7 @@
 <?php
 
 
-namespace dreadkopp\SlimTransceiver;
+namespace dreadkopp\LaravelSlimTransceiver;
 
 
 use Illuminate\Http\Request;
