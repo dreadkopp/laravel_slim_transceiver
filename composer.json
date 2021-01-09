@@ -1,10 +1,14 @@
 {
     "name": "dreadkopp/laravel_slim_transceiver",
     "description": "Stack laravel on top of your existing slim application",
-    "require": {},
+    "require": {
+        "slim/slim": '*',
+        "laravel/framework": '*'
+    },
     "autoload": {
         "psr-4": {
-            "dreadkopp\\LaravelSlimTransceiver": "src"
+            "dreadkopp\\LaravelSlimTransceiver\\": "src/"
         }
     }
 }
+
