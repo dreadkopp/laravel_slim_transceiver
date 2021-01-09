@@ -17,9 +17,8 @@ composer require dreadkopp/laravel_slim_transceiver
 add to the Bottom of your routes/web.php:
 
 ```
-Route::any('{any}', [\dreadkopp\LaravelSlimTransceiver\SlimTransceiver::class,'handle'])
-    ->withoutMiddleware( \App\Http\Middleware\VerifyCsrfToken::class)
-    ->where('any', '.*');
+Route::fallback([\dreadkopp\LaravelSlimTransceiver\SlimTransceiver::class,'handle'])
+    ->withoutMiddleware( \App\Http\Middleware\VerifyCsrfToken::class);
 ```
 
 ##### Slim:
