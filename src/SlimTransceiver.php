@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Services\Slim;
+namespace dreadkopp\SlimTransceiver;
 
 
 use Illuminate\Http\Request;
