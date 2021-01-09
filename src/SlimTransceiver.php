@@ -12,11 +12,13 @@ class SlimTransceiver
     private function dispatchToSlim(Request $request):Response
     {
 
-        session_start(
-            [
-                'save_path' => sys_get_temp_dir()
-            ]
-        );
+       if (session_status() !== PHP_SESSION_ACTIVE) {
+            session_start(
+                [
+                    'save_path' => sys_get_temp_dir()
+                ]
+            );
+        }
         foreach (session()->all() as $key => $value) {
             $_SESSION[$key] = $value;
         }
