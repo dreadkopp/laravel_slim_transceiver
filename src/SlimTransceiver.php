@@ -12,15 +12,10 @@ class SlimTransceiver
     private function dispatchToSlim(Request $request):Response
     {
 
+
        if (session_status() !== PHP_SESSION_ACTIVE) {
-            session_start(
-                [
-                    'save_path' => sys_get_temp_dir()
-                ]
-            );
-        }
-        foreach (session()->all() as $key => $value) {
-            $_SESSION[$key] = $value;
+           session_set_save_handler(session()->getHandler(), true);
+           session_start();
         }
         return include public_path('sub_slim.php');
 
@@ -77,20 +72,11 @@ class SlimTransceiver
 
     }
 
-    private function migrateNativeSessionVars()
-    {
-        session()->flush();
-        foreach($_SESSION as $key => $value) {
-            session()->put($key,$value);
-        }
-        session_unset();
-    }
-
     public function handle()
     {
         $slim_response = $this->dispatchToSlim(\request());
         $response = $this->translateSlimResponse($slim_response);
-        $this->migrateNativeSessionVars();
+
         return $response;
 
     }
