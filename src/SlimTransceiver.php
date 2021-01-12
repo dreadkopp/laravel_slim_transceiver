@@ -15,6 +15,7 @@ class SlimTransceiver
 
        if (session_status() !== PHP_SESSION_ACTIVE) {
            session_set_save_handler(session()->getHandler(), true);
+           session_name(session()->getSessionConfig()['cookie']);
            session_start();
         }
         return include public_path('sub_slim.php');
