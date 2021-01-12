@@ -73,7 +73,7 @@ class SlimTransceiver
             return \response()->json($content, $code);
         }
 
-        return \response($content,$code);
+        return \response($content,$code)->withHeaders($headers);
 
     }
 
