@@ -4,6 +4,7 @@
 namespace dreadkopp\LaravelSlimTransceiver;
 
 
+use Psr\Http\Message\ResponseInterface;
 use Illuminate\Http\Request;
 use Slim\Http\Response;
 
@@ -33,13 +34,18 @@ class SlimTransceiver
         }
     }
     
-    protected function dispatchToSlim(Request $request): Response
+    protected function dispatchToSlim(Request $request)
     {
         return include public_path('sub_slim.php');
     }
     
-    protected function translateSlimResponse(Response $response)
+    protected function translateSlimResponse($response)
     {
+        if(!$response instanceof ResponseInterface) {
+            //pass to laravel, i dont care
+            return $response;
+        }
+        
         $headers = $response->getHeaders();
         $body = $response->getBody();
         $code = $response->getStatusCode();
