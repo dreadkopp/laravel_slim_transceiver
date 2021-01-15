@@ -20,7 +20,7 @@ class SlimTransceiver
         
     }
     
-    private function createLocalSession()
+    protected function createLocalSession()
     {
         if (session_status() !== PHP_SESSION_ACTIVE) {
             session_set_save_handler(session()->getHandler(), true);
@@ -33,12 +33,12 @@ class SlimTransceiver
         }
     }
     
-    private function dispatchToSlim(Request $request): Response
+    protected function dispatchToSlim(Request $request): Response
     {
         return include public_path('sub_slim.php');
     }
     
-    private function translateSlimResponse(Response $response)
+    protected function translateSlimResponse(Response $response)
     {
         $headers = $response->getHeaders();
         $body = $response->getBody();
@@ -90,7 +90,7 @@ class SlimTransceiver
         
     }
     
-    private function gatherLocalSession()
+    protected function gatherLocalSession()
     {
         foreach ($_SESSION as $key => $val) {
             session()->put($key, $val);
