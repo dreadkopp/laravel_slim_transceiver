@@ -27,10 +27,10 @@ class SlimTransceiver
             session_set_save_handler(session()->getHandler(), true);
             session_name(session()->getSessionConfig()['cookie']);
             session_id(session()->getId());
-            session_start();
-            foreach (session()->all() as $key => $val) {
+        }
+        
+        foreach (session()->all() as $key => $val) {
                 $_SESSION[$key] = $val;
-            }
         }
     }
     
